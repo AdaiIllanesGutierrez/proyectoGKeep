@@ -1,15 +1,25 @@
-import sumar from "./sumador";
+import Nota from "./nota";
 
-const first = document.querySelector("#primer-numero");
-const second = document.querySelector("#segundo-numero");
-const form = document.querySelector("#sumar-form");
-const div = document.querySelector("#resultado-div");
+const titulo= document.querySelector("#titulo");
+const contenido = document.querySelector("#contenido");
+const form = document.querySelector("#nota-form");
+const div= document.querySelector("#resultado-div");
+
+
+var lista=new Array();
+
+//const Notes=new Nota(titulo.value,contenido.value);
 
 form.addEventListener("submit", (event) => {
   event.preventDefault();
 
-  const firstNumber = Number.parseInt(first.value);
-  const secondNumber = Number.parseInt(second.value);
+ const t = titulo.value;
+ const c = contenido.value;
+ const note= new Nota(t,c);
+ let p=document.createElement("p");
+ lista.push(note);
+//console.log(nota);
 
-  div.innerHTML = "<p>" + sumar(firstNumber, secondNumber) + "</p>";
+  //div.innerHTML = "<h1>" + note.getTitulo() + "</h1>"+ note.getContenido();
+div.prepend(note.getTitulo(),note.getContenido());
 });
