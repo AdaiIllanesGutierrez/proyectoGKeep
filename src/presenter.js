@@ -1,25 +1,50 @@
-import Nota from "./nota";
+let submit=document.querySelector(".submit");
+let notesElem=document.querySelector('.notes');
+let title=document.querySelector("#text");
+let desc=document.querySelector('#desc');
 
-const titulo= document.querySelector("#titulo");
-const contenido = document.querySelector("#contenido");
-const form = document.querySelector("#nota-form");
-const div= document.querySelector("#resultado-div");
+let notes=JSON.parse(localStorage.getItem("notes"));
 
 
-var lista=new Array();
-
-//const Notes=new Nota(titulo.value,contenido.value);
-
-form.addEventListener("submit", (event) => {
-  event.preventDefault();
-
- const t = titulo.value;
- const c = contenido.value;
- const note= new Nota(t,c);
- let p=document.createElement("p");
- lista.push(note);
-//console.log(nota);
-
-  //div.innerHTML = "<h1>" + note.getTitulo() + "</h1>"+ note.getContenido();
-div.prepend(note.getTitulo(),note.getContenido());
-});
+if(notes){
+    notes.forEach(element => {
+        addNotes(element)
+    });
+}
+submit.addEventListener("click", (e)=>{
+    e.preventDefault();
+    addNotes()
+})
+function addNotes(obj) {
+    let card=document.createElement("div");
+    card.classList.add("card");
+    let titleval=title.value;
+    let descVal=desc.value;
+    if(obj){
+        titleval=obj.title;
+        descVal=obj.desc;
+    }
+    if(titleval){
+        card.innerHTML=`<h3>${titleval}</h3>
+                                    <p class="ptag">${descVal}</p>
+                             <button class="del">Borrar</button>`;
+        notesElem.appendChild(card);
+        updateLs()
+    }
+    let del=card.querySelector(".del");
+    del.addEventListener('click', ()=>{
+        card.remove();
+        updateLs();
+    })
+}
+function updateLs() {
+    let card=document.querySelectorAll(".card");
+    let arr=[];
+    card.forEach(element => {
+        arr.push({
+            title:element.children[0].innerText,
+            desc:element.children[1].innerText
+        })
+    });
+    localStorage.setItem("notes", JSON.stringify(arr));
+}
