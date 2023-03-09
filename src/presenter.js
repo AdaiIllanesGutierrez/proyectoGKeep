@@ -51,19 +51,56 @@
 //import Nota from "./nota.js"
 
 // var notas= new Nota();
-const Titulo=document.getElementById('titulo');
-const Contenido=document.getElementById('contenido');
-const divRespuesta=document.getElementById('tareas');
+// const titulo=document.getElementById('titulo');
+// const contenido=document.getElementById('contenido');
+// const divRespuesta=document.getElementById('tareas');
+// var cont=0;
 
-var ListaNotas=[];
+// const objNota = {
+//     // id:"",
+//     titulo,
+//     contenido
+//   };
+
+  
+// var ListaNotas=[];
+
 document.getElementById('form_Notas').addEventListener('submit',alerta);
 
 function alerta(e){
-e.preventDefault();
-console.log(MostrarNotas());
-console.log(Titulo.value);
-console.log(Contenido.value);
-divRespuesta.innerHTML=Titulo.value + "-"+ Contenido.value;
+    
+    const titulo=document.getElementById('titulo').value;
+    const contenido=document.getElementById('contenido').value;
+    const divRespuesta=document.getElementById('tareas');
+    var cont=0;
+
+    const objNota = {
+        titulo,
+        contenido
+    };
+    //localStorage.setItem('notas',JSON.stringify(objNota));
+    if(localStorage.setItem('notas')=== null){
+        let notas=[];
+        notas.push(objNota);
+        localStorage.setItem('notas',JSON.stringify(notas));
+    }else{
+        let notas= JSON.parse(localStorage.getItem('notas'));
+        notas.push(objNota);
+        localStorage.setItem('notas',JSON.stringify(notas));
+    }
+    e.preventDefault();
+   
+    //console.log(MostrarNotas());
+
+    // objNota.id=cont;
+    // objNota.titulo="hola";
+
+    // for(i=0;i<ListaNotas.length;i++){
+    //     console.log(ListaNotas[i]);
+    // }
+    // console.log(Titulo.value);
+    // console.log(Contenido.value);
+    // divRespuesta.innerHTML=Titulo.value + "-"+ Contenido.value;
   
 }
 function MostrarNotas(){
