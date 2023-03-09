@@ -48,11 +48,24 @@
 //     });
 //     localStorage.setItem("notes", JSON.stringify(arr));
 // }
+//import Nota from "./nota.js"
 
+// var notas= new Nota();
+const Titulo=document.getElementById('titulo');
+const Contenido=document.getElementById('contenido');
+const divRespuesta=document.getElementById('tareas');
+
+var ListaNotas=[];
 document.getElementById('form_Notas').addEventListener('submit',alerta);
 
 function alerta(e){
-    console.log(document.getElementById('titulo').value);
-    console.log(document.getElementById('contenido').value);
-    e.preventDefault();
+e.preventDefault();
+console.log(MostrarNotas());
+console.log(Titulo.value);
+console.log(Contenido.value);
+divRespuesta.innerHTML=Titulo.value + "-"+ Contenido.value;
+  
+}
+function MostrarNotas(){
+    return "Mostrando notas";
 }
