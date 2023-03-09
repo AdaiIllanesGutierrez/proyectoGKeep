@@ -79,7 +79,7 @@ function alerta(e){
         contenido
     };
     //localStorage.setItem('notas',JSON.stringify(objNota));
-    if(localStorage.setItem('notas')=== null){
+    if(localStorage.getItem('notas')=== null){
         let notas=[];
         notas.push(objNota);
         localStorage.setItem('notas',JSON.stringify(notas));
