@@ -59,6 +59,18 @@
         </div>
     </nav>
     <br>
+    <h2>Buscar</h2>
+        <form id="form-buscar">
+          <input
+            type="text"
+            id="titulo-buscar"
+            placeholder="Ingresa un titulo"
+          />
+          <button type="submit" id="btn-buscar" class="btn btn-primary">Buscar</button>
+        </form>
+    <br>
+    <div id="buscados"></div>
+    <br>
     <form id="form_Notas">
         <div id="formTitulo">
             <input type="text" id="titulo" placeholder=" TITULO ">
@@ -70,7 +82,7 @@
         <button type="submit" class="btn_guardar" >crear</button>
     </form>
     <br>
-    
+
     <div id="tareas"></div>
     <script src="./src/presenter.js"></script>
 </body>

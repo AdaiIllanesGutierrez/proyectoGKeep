@@ -64,6 +64,14 @@
 
   
 // var ListaNotas=[];
+const titulobuscado=document.getElementById('titulo-buscar');
+const conte=document.getElementById('contenido');
+
+document.getElementById('form-buscar').addEventListener("submit", (event) => {
+    event.preventDefault();
+    buscarNotasporTitulo(titulobuscado.value);
+  });
+
 
 document.getElementById('form_Notas').addEventListener('submit',guardarNotas);
 
@@ -127,6 +135,29 @@ for(let i=0;i<notas.length;i++){
 }
 localStorage.setItem('notas',JSON.stringify(notas));
 MostrarNotas();
+
+}
+function buscarNotasporTitulo(titulo){
+
+
+let divRespuesta=document.getElementById('buscados');
+let notas=JSON.parse(localStorage.getItem('notas'));
+
+console.log(contenido);
+for(let i=0;i<notas.length;i++){
+    if (notas[i].titulo== titulo){
+        divRespuesta.innerHTML=`<div class="card">
+                            <div class="card-body">
+                                <h2>${titulo}</h2>
+                                <p>${notas[i].contenido}</p>
+                                <a class="btn btn-danger" onclick="borrarNotas('${titulo}')">eliminar</a>
+                            </div>
+                        </div>`
+    }else{
+        divRespuesta.innerHTML="No se encuentran resultados Que coicidan";
+    }
+}
+localStorage.setItem('notas',JSON.stringify(notas));
 
 }
 MostrarNotas();
