@@ -65,13 +65,13 @@
   
 // var ListaNotas=[];
 
-document.getElementById('form_Notas').addEventListener('submit',alerta);
+document.getElementById('form_Notas').addEventListener('submit',guardarNotas);
 
-function alerta(e){
+function guardarNotas(e){
     
     const titulo=document.getElementById('titulo').value;
     const contenido=document.getElementById('contenido').value;
-    const divRespuesta=document.getElementById('tareas');
+   
     var cont=0;
 
     const objNota = {
@@ -88,7 +88,8 @@ function alerta(e){
         notas.push(objNota);
         localStorage.setItem('notas',JSON.stringify(notas));
     }
-    e.preventDefault();
+    MostrarNotas();
+    //e.preventDefault();
    
     //console.log(MostrarNotas());
 
@@ -103,6 +104,26 @@ function alerta(e){
     // divRespuesta.innerHTML=Titulo.value + "-"+ Contenido.value;
   
 }
-function MostrarNotas(){
-    return "Mostrando notas";
+function MostrarNotas(e){
+    let divRespuesta=document.getElementById('tareas');
+    let notas= JSON.parse(localStorage.getItem('notas'));
+
+    divRespuesta.innerHTML='';
+
+    for(let i=0;i<notas.length; i++){
+
+        let titulo=notas[i].titulo;
+        let contenido=notas[i].contenido;
+
+        divRespuesta.innerHTML+=`<div class="card">
+                            <div class="card-body">
+                                <h2>${titulo}</h2>
+                                <p>${contenido}</p>
+                                <a class="btn btn-danger">eliminar</a>
+                            </div>
+                        </div>`
+    }
+
 }
+
+MostrarNotas();
