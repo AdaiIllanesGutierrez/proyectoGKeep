@@ -49,3 +49,10 @@
 //     localStorage.setItem("notes", JSON.stringify(arr));
 // }
 
+document.getElementById('form_Notas').addEventListener('submit',alerta);
+
+function alerta(e){
+    console.log(document.getElementById('titulo').value);
+    console.log(document.getElementById('contenido').value);
+    e.preventDefault();
+}
