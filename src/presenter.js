@@ -126,7 +126,15 @@ function MostrarNotas(e){
 
 }
 function borrarNotas(titulo){
-console.log(titulo);
+//console.log(titulo);
+let notas=JSON.parse(localStorage.getItem('notas'));
+for(let i=0;i<notas.length;i++){
+    if (notas[i].titulo== titulo){
+        notas.splice(i,1);
+    }
+}
+localStorage.setItem('notas',JSON.stringify(notas));
+MostrarNotas();
 
 }
 MostrarNotas();
