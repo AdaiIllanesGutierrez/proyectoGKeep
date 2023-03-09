@@ -119,11 +119,14 @@ function MostrarNotas(e){
                             <div class="card-body">
                                 <h2>${titulo}</h2>
                                 <p>${contenido}</p>
-                                <a class="btn btn-danger">eliminar</a>
+                                <a class="btn btn-danger" onclick="borrarNotas('${titulo}')">eliminar</a>
                             </div>
                         </div>`
     }
 
 }
+function borrarNotas(titulo){
+console.log(titulo);
 
+}
 MostrarNotas();
