@@ -71,15 +71,17 @@ function guardarNotas(e){
     
     const titulo=document.getElementById('titulo').value;
     const contenido=document.getElementById('contenido').value;
-   
-    var cont=0;
 
     const objNota = {
         titulo,
         contenido
     };
     //localStorage.setItem('notas',JSON.stringify(objNota));
-    if(localStorage.getItem('notas')=== null){
+    if(titulo===""){
+        alert("Debe llenar el titulo");
+        return;
+    }else if(localStorage.getItem('notas')=== null){
+        
         let notas=[];
         notas.push(objNota);
         localStorage.setItem('notas',JSON.stringify(notas));
@@ -89,19 +91,9 @@ function guardarNotas(e){
         localStorage.setItem('notas',JSON.stringify(notas));
     }
     MostrarNotas();
-    //e.preventDefault();
+    document.getElementById('form_Notas').reset();
+    e.preventDefault();
    
-    //console.log(MostrarNotas());
-
-    // objNota.id=cont;
-    // objNota.titulo="hola";
-
-    // for(i=0;i<ListaNotas.length;i++){
-    //     console.log(ListaNotas[i]);
-    // }
-    // console.log(Titulo.value);
-    // console.log(Contenido.value);
-    // divRespuesta.innerHTML=Titulo.value + "-"+ Contenido.value;
   
 }
 function MostrarNotas(e){
